@@ -22,10 +22,10 @@ body {
 }
 
 .content {
-	flex: 1;
+	position: relative;
+	top: 50px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	min-width: fit-content;
 }
