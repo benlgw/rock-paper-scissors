@@ -1,7 +1,64 @@
-let humanScore = 0;
+const body = document.querySelector("body");
+
+const roundCounter = document.querySelector("#round");
+const scoreCounter = document.querySelector("#score");
+const winner = document.querySelector("#winner");
+
+const buttons = document.querySelectorAll("button");
+const result = document.querySelector("#result");
+
+const resetButton = document.createElement("button");
+resetButton.textContent = "New Game";
+
+let playerScore = 0;
 let computerScore = 0;
 
-function getComputerChoice(a) {
+let round = 1;
+
+buttons.forEach((element) => {
+	element.addEventListener("click", (event) => {
+		const humanChoice = element.textContent.toLowerCase();
+		const computerChoice = getComputerChoice();
+
+		if (round <= 5) {
+			playRound(humanChoice, computerChoice);
+			round += 1;
+		}
+
+		playRound(humanChoice, computerChoice);
+		round += 1;
+		roundCounter.textContent = `Round: ${round}`;
+
+		if (round > 5) {
+			winner.textContent =
+				playerScore > computerScore ? "You won! :)" : "You lose! :(";
+
+			body.appendChild(resetButton);
+
+			resetButton.addEventListener("click", () => {
+				body.removeChild(resetButton);
+
+				round = 1;
+				roundCounter.textContent = "Round: 1";
+
+				playerScore = 0;
+				computerScore = 0;
+				scoreCounter.textContent = "Player: 0 | Computer: 0";
+			});
+		} else {
+			roundCounter.textContent = `Round: ${round}`;
+
+			round = 1;
+			// roundCounter.textContent = "Round: 1";
+
+			playerScore = 0;
+			computerScore = 0;
+			// scoreCounter.textContent = "Player: 0 | Computer: 0";
+		}
+	});
+});
+
+function getComputerChoice() {
 	let randomNum = Math.floor(Math.random() * 3);
 
 	switch (randomNum) {
