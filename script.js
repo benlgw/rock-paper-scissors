@@ -1,18 +1,39 @@
-const buttons = document.querySelectorAll("button");
-const buttonSelection = document.querySelector("#result");
+const roundCounter = document.querySelector("#round");
+const scoreCounter = document.querySelector("#score");
+const winner = document.querySelector("#winner");
 
-let humanScore = 0;
+const buttons = document.querySelectorAll("button");
+const result = document.querySelector("#result");
+
+let playerScore = 0;
 let computerScore = 0;
 
-let humanChoice;
+let round = 1;
 
 buttons.forEach((element) => {
 	element.addEventListener("click", (event) => {
-		humanChoice = element.textContent.toLowerCase();
+		const humanChoice = element.textContent.toLowerCase();
+		const computerChoice = getComputerChoice();
+
+		playRound(humanChoice, computerChoice);
+		round += 1;
+		roundCounter.textContent = `Round: ${round}`;
+
+		if (round > 5) {
+			winner.textContent =
+				playerScore > computerScore ? "You won! :)" : "You lose! :(";
+
+			round = 1;
+			// roundCounter.textContent = "Round: 1";
+
+			playerScore = 0;
+			computerScore = 0;
+			// scoreCounter.textContent = "Player: 0 | Computer: 0";
+		}
 	});
 });
 
-function getComputerChoice(a) {
+function getComputerChoice() {
 	let randomNum = Math.floor(Math.random() * 3);
 
 	switch (randomNum) {
@@ -27,10 +48,14 @@ function getComputerChoice(a) {
 			break;
 	}
 }
+
 function playRound(humanChoice, computerChoice) {
 	// Draw
 	if (humanChoice == computerChoice) {
-		buttonSelection.textContent = "It's a Draw!";
+		result.textContent = "It's a Draw!";
+		playerScore += 1;
+		computerScore += 1;
+		scoreCounter.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
 	}
 	// Win
 	if (
@@ -38,7 +63,9 @@ function playRound(humanChoice, computerChoice) {
 		(humanChoice == "paper" && computerChoice == "rock") ||
 		(humanChoice == "scissors" && computerChoice == "paper")
 	) {
-		buttonSelection.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
+		result.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
+		playerScore += 1;
+		scoreCounter.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
 	}
 	// Lose
 	if (
@@ -46,27 +73,8 @@ function playRound(humanChoice, computerChoice) {
 		(humanChoice == "paper" && computerChoice == "scissors") ||
 		(humanChoice == "scissors" && computerChoice == "rock")
 	) {
-		buttonSelection.textContent = `You Lose! ${computerChoice} beats ${humanChoice}`;
+		result.textContent = `You Lose! ${computerChoice} beats ${humanChoice}`;
+		computerScore += 1;
+		scoreCounter.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
 	}
-}
-
-// function playGame() {
-// 	let round = 1;
-// 	while (round <= 5) {
-// 		const humanChoice = getHumanChoice();
-// 		const computerChoice = getComputerChoice();
-// 		playRound(humanChoice, computerChoice);
-// 		round += 1;
-// 	}
-// }
-
-// playGame();
-
-// const computerChoice = getComputerChoice();
-// playRound(humanChoice, computerChoice);
-
-if (humanScore > computerScore) {
-	console.log("You win! :)");
-} else {
-	console.log("You lose! :(");
 }
