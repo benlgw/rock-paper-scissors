@@ -39,6 +39,8 @@ buttons.forEach((element) => {
 				playerScore = 0;
 				computerScore = 0;
 				scoreCounter.textContent = "Player: 0 | Computer: 0";
+
+				result.textContent = "";
 			});
 		}
 	});
