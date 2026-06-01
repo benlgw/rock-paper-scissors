@@ -1,13 +1,13 @@
-const body = document.querySelector("body");
-
-const roundCounter = document.querySelector("#round");
-const scoreCounter = document.querySelector("#score");
-const winner = document.querySelector("#winner");
+const content = document.querySelector("#content");
 
 const buttons = document.querySelectorAll("button");
 const result = document.querySelector("#result");
 
+const roundCounter = document.querySelector("#round");
+const scoreCounter = document.querySelector("#score");
+
 const resetButton = document.createElement("button");
+resetButton.classList.add("newGame");
 resetButton.textContent = "New Game";
 
 let playerScore = 0;
@@ -25,13 +25,13 @@ buttons.forEach((element) => {
 			round += 1;
 			roundCounter.textContent = `Round: ${round}`;
 		} else {
-			winner.textContent =
+			result.textContent =
 				playerScore > computerScore ? "You won! :)" : "You lose! :(";
 
-			body.appendChild(resetButton);
+			content.appendChild(resetButton);
 
 			resetButton.addEventListener("click", () => {
-				body.removeChild(resetButton);
+				content.removeChild(resetButton);
 
 				round = 1;
 				roundCounter.textContent = "Round: 1";
