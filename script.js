@@ -1,3 +1,6 @@
+const buttons = document.querySelectorAll("button");
+const buttonSelection = document.querySelector("div");
+
 let humanScore = 0;
 let computerScore = 0;
 
@@ -25,7 +28,7 @@ function getHumanChoice() {
 function playRound(humanChoice, computerChoice) {
 	// Draw
 	if (humanChoice == computerChoice) {
-		console.log("It's a Draw!");
+		buttonSelection.textContent = "It's a Draw!";
 	}
 	// Win
 	if (
@@ -33,7 +36,7 @@ function playRound(humanChoice, computerChoice) {
 		(humanChoice == "paper" && computerChoice == "rock") ||
 		(humanChoice == "scissors" && computerChoice == "paper")
 	) {
-		console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+		buttonSelection.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
 	}
 	// Lose
 	if (
@@ -41,7 +44,7 @@ function playRound(humanChoice, computerChoice) {
 		(humanChoice == "paper" && computerChoice == "scissors") ||
 		(humanChoice == "scissors" && computerChoice == "rock")
 	) {
-		console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+		buttonSelection.textContent = `You Lose! ${computerChoice} beats ${humanChoice}`;
 	}
 }
 
@@ -60,9 +63,6 @@ function playRound(humanChoice, computerChoice) {
 // const humanChoice = getHumanChoice();
 // const computerChoice = getComputerChoice();
 // playRound(humanChoice, computerChoice);
-
-const buttons = document.querySelectorAll("button");
-const buttonSelection = document.querySelector("div");
 
 buttons.forEach((element) => {
 	element.addEventListener("click", (event) => {
