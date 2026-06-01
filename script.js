@@ -62,10 +62,11 @@ function playRound(humanChoice, computerChoice) {
 // playRound(humanChoice, computerChoice);
 
 const buttons = document.querySelectorAll("button");
+const buttonSelection = document.querySelector("div");
 
 buttons.forEach((element) => {
 	element.addEventListener("click", (event) => {
-		alert(`You clicked ${element.textContent}`);
+		buttonSelection.textContent = `You selected ${element.textContent}`;
 	});
 });
 
