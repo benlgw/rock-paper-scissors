@@ -27,12 +27,6 @@ function getComputerChoice(a) {
 			break;
 	}
 }
-
-function getHumanChoice() {
-	let humanPick = prompt("Rock, Paper, or Scissors? : ").toLowerCase();
-	return humanPick;
-}
-
 function playRound(humanChoice, computerChoice) {
 	// Draw
 	if (humanChoice == computerChoice) {
