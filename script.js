@@ -45,17 +45,29 @@ function playRound(humanChoice, computerChoice) {
 	}
 }
 
-function playGame() {
-	let round = 1;
-	while (round <= 5) {
-		const humanChoice = getHumanChoice();
-		const computerChoice = getComputerChoice();
-		playRound(humanChoice, computerChoice);
-		round += 1;
-	}
-}
+// function playGame() {
+// 	let round = 1;
+// 	while (round <= 5) {
+// 		const humanChoice = getHumanChoice();
+// 		const computerChoice = getComputerChoice();
+// 		playRound(humanChoice, computerChoice);
+// 		round += 1;
+// 	}
+// }
 
-playGame();
+// playGame();
+
+// const humanChoice = getHumanChoice();
+// const computerChoice = getComputerChoice();
+// playRound(humanChoice, computerChoice);
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((element) => {
+	element.addEventListener("click", (event) => {
+		alert(`You clicked ${element.textContent}`);
+	});
+});
 
 if (humanScore > computerScore) {
 	console.log("You win! :)");
