@@ -20,16 +20,11 @@ buttons.forEach((element) => {
 		const humanChoice = element.textContent.toLowerCase();
 		const computerChoice = getComputerChoice();
 
-		if (round <= 5) {
+		if (round < 5) {
 			playRound(humanChoice, computerChoice);
 			round += 1;
-		}
-
-		playRound(humanChoice, computerChoice);
-		round += 1;
-		roundCounter.textContent = `Round: ${round}`;
-
-		if (round > 5) {
+			roundCounter.textContent = `Round: ${round}`;
+		} else {
 			winner.textContent =
 				playerScore > computerScore ? "You won! :)" : "You lose! :(";
 
@@ -45,15 +40,6 @@ buttons.forEach((element) => {
 				computerScore = 0;
 				scoreCounter.textContent = "Player: 0 | Computer: 0";
 			});
-		} else {
-			roundCounter.textContent = `Round: ${round}`;
-
-			round = 1;
-			// roundCounter.textContent = "Round: 1";
-
-			playerScore = 0;
-			computerScore = 0;
-			// scoreCounter.textContent = "Player: 0 | Computer: 0";
 		}
 	});
 });
