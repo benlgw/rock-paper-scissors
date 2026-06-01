@@ -31,7 +31,7 @@ buttons.forEach((element) => {
 			content.appendChild(resetButton);
 
 			resetButton.addEventListener("click", () => {
-				content.removeChild(resetButton);
+				resetButton.remove();
 
 				round = 1;
 				roundCounter.textContent = "Round: 1";
